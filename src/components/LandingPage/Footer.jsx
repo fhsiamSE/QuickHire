@@ -36,7 +36,7 @@ function Footer() {
     <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-8 py-16 border-b border-gray-800">
-        <div className="grid grid-cols-4 gap-12">
+        <div className="grid xl:grid-cols-4 xl:gap-12 grid-cols-1">
           {/* Brand Section */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 w-fit">
@@ -111,7 +111,7 @@ function Footer() {
       </div>
 
       {/* Bottom Footer */}
-      <div className="max-w-7xl mx-auto px-8 py-8 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-8 py-8 flex justify-between items-center flex-col gap-4  xl:flex-row">
         <p className="text-gray-500 text-md">
           2021 © QuickHire. All rights reserved.
         </p>

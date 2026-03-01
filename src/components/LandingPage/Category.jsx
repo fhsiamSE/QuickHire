@@ -21,19 +21,19 @@ function Category() {
   ]
 
   return (
-    <section className="w-full mx-auto pt-[72px] pr-[124px] pb-12 pl-[124px] opacity-100">
+    <section className="w-full mx-auto pt-12 md:pt-[72px] pr-6 md:pr-[124px] pb-12 md:pb-12 pl-6 md:pl-[124px] opacity-100">
       {/* Header */}
-      <div className="flex items-center justify-between mb-12">
-        <h2 className="text-5xl font-bold text-black">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4">
+        <h2 className="text-3xl md:text-5xl font-bold text-black">
           Explore by <span className="text-blue-500">category</span>
         </h2>
-        <a href="#" className="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all">
+        <a href="#" className="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all text-sm md:text-base">
           Show all jobs <span>→</span>
         </a>
       </div>
 
-      {/* Categories Grid */}
-      <div className="grid grid-cols-4 gap-12">
+      {/* Categories Grid - Desktop */}
+      <div className="hidden md:grid grid-cols-4 gap-12">
         {categories.map((category) => (
           <div
             key={category.id}
@@ -43,7 +43,7 @@ function Category() {
             <img src={category.icon} alt={category.name} className="w-12 h-12 mb-8" />
 
             {/* Category Name */}
-            <h3 className="text-2xl text-gray-800 font-bold mb-2 group-hover:text-white">
+            <h3 className="text-2xl text-gray-800 font-bold mb-2">
               {category.name}
             </h3>
 
@@ -54,6 +54,41 @@ function Category() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Categories List - Mobile */}
+      <div className="md:hidden flex flex-col gap-0">
+        {categories.map((category) => (
+          <div
+            key={category.id}
+            className="flex items-center justify-between py-4 px-4 border-b border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
+          >
+            <div className="flex items-center gap-4 flex-grow">
+              {/* Icon */}
+              <img src={category.icon} alt={category.name} className="w-8 h-8 flex-shrink-0" />
+
+              {/* Content */}
+              <div className="flex flex-col">
+                <h3 className="text-base font-semibold text-gray-900">
+                  {category.name}
+                </h3>
+                <span className="text-xs text-gray-500">
+                  {category.jobs} jobs available
+                </span>
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <span className="text-gray-400 text-lg ml-2">→</span>
+          </div>
+        ))}
+
+        {/* Show all jobs link - Mobile */}
+        <div className="py-4 px-4">
+          <a href="#" className="text-blue-600 font-medium flex items-center gap-2 text-sm hover:gap-3 transition-all">
+            Show all jobs <span>→</span>
+          </a>
+        </div>
       </div>
     </section>
   )

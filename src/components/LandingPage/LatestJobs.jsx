@@ -84,13 +84,16 @@ function LatestJobs() {
           <h2 className="text-4xl font-bold text-gray-900">
             Latest <span className="text-blue-500">jobs open</span>
           </h2>
-          <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity flex items-center gap-2">
+          <div className='hidden xl:flex'>
+            <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity flex items-center gap-2">
             Show all jobs →
           </a>
+          </div>
+          
         </div>
 
         {/* Jobs List */}
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid xl:grid-cols-2 gap-8 grid-cols-1 s">
           {jobs.map((job) => (
             <div
               key={job.id}
@@ -132,6 +135,11 @@ function LatestJobs() {
             </div>
           ))}
         </div>
+        <div className="flex justify-left xl:hidden">
+            <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
+              Show all jobs →
+            </a>
+          </div>
       </div>
     </section>
   )
