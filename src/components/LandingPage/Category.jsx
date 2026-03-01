@@ -40,10 +40,10 @@ function Category() {
             className="p-8 rounded-lg border border-gray-200 bg-white text-black transition-all duration-300 cursor-pointer hover:bg-blue-600 hover:border-blue-600 hover:text-white hover:shadow-lg"
           >
             {/* Icon */}
-            <img src={category.icon} alt={category.name} className="w-12 h-12" />
+            <img src={category.icon} alt={category.name} className="w-12 h-12 mb-8" />
 
             {/* Category Name */}
-            <h3 className="text-xl font-bold mb-2 group-hover:text-white">
+            <h3 className="text-2xl text-gray-800 font-bold mb-2 group-hover:text-white">
               {category.name}
             </h3>
 
