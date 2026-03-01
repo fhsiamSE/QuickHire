@@ -79,7 +79,7 @@ function JobSearch() {
         </form>
 
         {/* Popular Searches */}
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-400 text-xl mt-32">
           Popular : {popularJobs.join(', ')}
         </p>
       </div>

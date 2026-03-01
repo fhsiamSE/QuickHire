@@ -15,7 +15,7 @@ function CompanysWeHelp() {
         <p className="text-gray-400 text-xl font-medium m-0 tracking-wider">
           Companies we helped grow
         </p>
-        <div className="flex gap-48 items-center justify-start flex-wrap">
+        <div className="flex gap-36 items-center justify-start flex-wrap">
           {companies.map((company, idx) => (
             <div className="flex items-center justify-center h-16 text-4xl font-medium text-gray-400"
               key={idx}

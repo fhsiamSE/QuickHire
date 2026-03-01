@@ -4,7 +4,7 @@ import AdminImage from '../../assets/AdminImage.png'
 function SignUpAds() {
   return (
    <div className="py-10 px-5">
-      <div className="max-w-7xl mx-auto h-96 flex items-end gap-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-16 overflow-hidden relative"
+      <div className="max-w-5xl mx-auto h-96 flex items-end gap-10 bg-gradient-to-br from-blue-600 to-blue-700  p-16 overflow-hidden relative"
        style={{
     clipPath: 'polygon(120px 0, 100% 0, 100% calc(100% - 70px), calc(100% - 120px) 100%, 0 100%, 0 70px)',
   }}>

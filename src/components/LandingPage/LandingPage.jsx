@@ -3,6 +3,7 @@ import Header from './Header'
 import JobSearch from './JobSearch'
 import CompanysWeHelp from './CompanysWeHelp'
 import Category from './Category'
+import FeaturedJobs from './FeaturedJobs'
 import SignUpAds from './SignUpAds'
 
 function LandingPage() {
@@ -13,6 +14,7 @@ function LandingPage() {
       <CompanysWeHelp />
       <Category />
       <SignUpAds />
+      <FeaturedJobs />
     </div>
   )
 }
