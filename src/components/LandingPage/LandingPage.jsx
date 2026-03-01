@@ -4,7 +4,9 @@ import JobSearch from './JobSearch'
 import CompanysWeHelp from './CompanysWeHelp'
 import Category from './Category'
 import FeaturedJobs from './FeaturedJobs'
+import LatestJobs from './LatestJobs'
 import SignUpAds from './SignUpAds'
+import Footer from './Footer'
 
 function LandingPage() {
   return (
@@ -15,6 +17,8 @@ function LandingPage() {
       <Category />
       <SignUpAds />
       <FeaturedJobs />
+      <LatestJobs />
+      <Footer />
     </div>
   )
 }
