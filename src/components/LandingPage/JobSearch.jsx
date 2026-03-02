@@ -16,11 +16,16 @@ function JobSearch() {
   }
 
   return (
-    <div className="bg-gray-100 rounded-tl-lg  ">
+    <div
+      className="bg-gray-100 rounded-tl-lg 
+      [clip-path:polygon(0px_0,100%_0,100%_calc(100%-0px),calc(100%-120px)_100%,0_100%,0_70px)]   
+       lg:[clip-path:polygon(120px_0,100%_0,100%_calc(100%-300px),calc(100%-550px)_100%,0_100%,0_70px)]"
+      
+    >
 
       {/* Hero Section */}
-     <section className="bg-gray-100 rounded-tl-lg ">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-20 ">
+     <section className="bg-gray-100 rounded-tl-lg">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-20  ">
     
     <div className="grid lg:grid-cols-2 items-center gap-12 ">
       
