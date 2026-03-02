@@ -21,9 +21,9 @@ function Category() {
   ]
 
   return (
-    <section className="w-full mx-auto pt-12 md:pt-[72px] pr-6 md:pr-[124px] pb-12 md:pb-12 pl-6 md:pl-[124px] opacity-100">
+    <section className="w-full mx-auto pt-12 md:pt-[72px] pr-6 md:pr-[124px] pb-12 md:pb-12 pl-6 md:pl-[124px] opacity-100 ">
       {/* Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4 ">
         <h2 className="text-3xl md:text-5xl font-bold text-black">
           Explore by <span className="text-blue-500">category</span>
         </h2>
@@ -33,7 +33,7 @@ function Category() {
       </div>
 
       {/* Categories Grid - Desktop */}
-      <div className="hidden md:grid grid-cols-4 gap-12">
+      <div className="hidden md:grid grid-cols-4 gap-12 ">
         {categories.map((category) => (
           <div
             key={category.id}
@@ -43,14 +43,14 @@ function Category() {
             <img src={category.icon} alt={category.name} className="w-12 h-12 mb-8" />
 
             {/* Category Name */}
-            <h3 className="text-2xl text-gray-800 font-bold mb-2">
+            <h3 className="text-2xl text-gray-800 font-bold mb-2 md:text-xl hover:text-blue-100">
               {category.name}
             </h3>
 
             {/* Jobs Count and Link */}
-            <div className="flex items-center gap-2 text-gray-500 hover:text-blue-100">
-              <span className="text-sm">{category.jobs} jobs available</span>
-              <span className="text-lg">→</span>
+            <div className="flex items-center gap-2 ">
+              <span className="text-sm text-gray-500 ">{category.jobs} jobs available</span>
+              <span className="text-2xl font-bold">→</span>
             </div>
           </div>
         ))}
@@ -69,7 +69,7 @@ function Category() {
 
               {/* Content */}
               <div className="flex flex-col">
-                <h3 className="text-base font-semibold text-gray-900">
+                <h3 className="text-base font-semibold text-gray-900 ">
                   {category.name}
                 </h3>
                 <span className="text-xs text-gray-500">
