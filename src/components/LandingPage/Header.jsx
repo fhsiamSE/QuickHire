@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -8,18 +9,18 @@ function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
               Q
             </div>
             <span className="text-xl font-bold text-gray-900">QuickHire</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-8 absolute left-96 transform -translate-x-1/2">
-            <a href="#" className="text-gray-600 hover:text-gray-900 font-medium">
+            <Link to="/jobs" className="text-gray-600 hover:text-gray-900 font-medium">
               Find Jobs
-            </a>
+            </Link>
             <a href="#" className="text-gray-600 hover:text-gray-900 font-medium">
               Browse Companies
             </a>
@@ -27,9 +28,6 @@ function Header() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex gap-4 items-center">
-            <button className="text-indigo-600 hover:text-indigo-700 font-medium">
-              Login
-            </button>
             <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 font-medium rounded">
               Sign Up
             </button>
@@ -49,13 +47,13 @@ function Header() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden mt-4 border-t border-gray-300 pt-4 flex flex-col gap-4">
-            <a
-              href="#"
+            <Link
+              to="/jobs"
               className="text-gray-600 hover:text-gray-900 font-medium py-2"
               onClick={() => setMenuOpen(false)}
             >
               Find Jobs
-            </a>
+            </Link>
             <a
               href="#"
               className="text-gray-600 hover:text-gray-900 font-medium py-2"
@@ -64,9 +62,6 @@ function Header() {
               Browse Companies
             </a>
             <div className="border-t border-gray-300 pt-4 flex flex-col gap-3">
-              <button className="text-indigo-600 hover:text-indigo-700 font-medium py-2 text-left">
-                Login
-              </button>
               <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 font-medium rounded text-center">
                 Sign Up
               </button>

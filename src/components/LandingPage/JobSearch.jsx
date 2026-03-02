@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FiSearch, FiMapPin } from 'react-icons/fi'
 import JobSearchImage from "../../assets/JobSearchImage.png";
 
 function JobSearch() {
+  const navigate = useNavigate()
   const [jobTitle, setJobTitle] = useState('')
   const [location, setLocation] = useState('Florence, Italy')
 
@@ -10,7 +12,7 @@ function JobSearch() {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log('Searching for:', jobTitle, 'in', location)
+    navigate('/jobs')
   }
 
   return (

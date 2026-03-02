@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 function FeaturedJobs() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -221,9 +222,9 @@ function FeaturedJobs() {
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight">
             Featured <span className="text-blue-500">jobs</span>
           </h2>
-          <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
+          <Link to="/jobs" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
             Show all jobs →
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Grid - Hidden on md and below */}
@@ -263,9 +264,9 @@ function FeaturedJobs() {
 
           {/* Show all jobs link */}
           <div className="flex justify-left">
-            <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
+            <Link to="/jobs" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
               Show all jobs →
-            </a>
+            </Link>
           </div>
         </div>
       </div>

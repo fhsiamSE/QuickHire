@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function LatestJobs() {
   const jobs = [
@@ -85,9 +86,9 @@ function LatestJobs() {
             Latest <span className="text-blue-500">jobs open</span>
           </h2>
           <div className='hidden xl:flex'>
-            <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity flex items-center gap-2">
+            <Link to="/jobs" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity flex items-center gap-2">
             Show all jobs →
-          </a>
+          </Link>
           </div>
           
         </div>
@@ -136,9 +137,9 @@ function LatestJobs() {
           ))}
         </div>
         <div className="flex justify-left xl:hidden">
-            <a href="#" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
+            <Link to="/jobs" className="text-blue-500 text-sm font-medium hover:opacity-80 transition-opacity">
               Show all jobs →
-            </a>
+            </Link>
           </div>
       </div>
     </section>

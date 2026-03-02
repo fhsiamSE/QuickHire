@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Design from '../../assets/Logos/Design.png'
 import Sales from '../../assets/Logos/Sales.jpg'
 import Marketing from '../../assets/Logos/Marketing.png'
@@ -27,9 +28,9 @@ function Category() {
         <h2 className="text-3xl md:text-5xl font-bold text-black">
           Explore by <span className="text-blue-500">category</span>
         </h2>
-        <a href="#" className="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all text-sm md:text-base">
+        <Link to="/jobs" className="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 transition-all text-sm md:text-base">
           Show all jobs <span>→</span>
-        </a>
+        </Link>
       </div>
 
       {/* Categories Grid - Desktop */}
@@ -85,9 +86,9 @@ function Category() {
 
         {/* Show all jobs link - Mobile */}
         <div className="py-4 px-4">
-          <a href="#" className="text-blue-600 font-medium flex items-center gap-2 text-sm hover:gap-3 transition-all">
+          <Link to="/jobs" className="text-blue-600 font-medium flex items-center gap-2 text-sm hover:gap-3 transition-all">
             Show all jobs <span>→</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
