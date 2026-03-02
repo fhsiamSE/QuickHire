@@ -19,7 +19,7 @@ function JobSearch() {
     <div
       className="bg-gray-100 rounded-tl-lg 
       [clip-path:polygon(0px_0,100%_0,100%_calc(100%-0px),calc(100%-120px)_100%,0_100%,0_70px)]   
-       lg:[clip-path:polygon(120px_0,100%_0,100%_calc(100%-300px),calc(100%-550px)_100%,0_100%,0_70px)]"
+       lg:[clip-path:polygon(  0px_0,100%_0,100%_calc(100%-300px),calc(100%-550px)_100%,0_100%,0_70px)]"
       
     >
 
