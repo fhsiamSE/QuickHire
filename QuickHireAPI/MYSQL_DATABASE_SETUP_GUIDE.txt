@@ -1,0 +1,312 @@
+================================================================================
+QUICKHIRE - MySQL Database Setup Guide
+================================================================================
+
+This guide shows you how to store data in MySQL database and connect it with
+the React frontend and Laravel backend.
+
+================================================================================
+PART 1: Install MySQL
+================================================================================
+
+WINDOWS:
+--------
+1. Download MySQL Community Server:
+   https://dev.mysql.com/downloads/mysql/
+
+2. Run the installer and follow the steps:
+   - Choose Setup Type: Developer Default
+   - Check requirements and proceed
+   - Choose the server configuration type
+   - Set port to 3306 (default)
+   - Configure MySQL Server as a Windows Service
+   - Set username: root
+   - Set password (remember this!)
+
+3. Complete the installation
+
+MACOS:
+------
+Open Terminal and run:
+  brew install mysql
+  brew services start mysql
+  mysql_secure_installation
+
+LINUX (Ubuntu/Debian):
+---------------------
+Open Terminal and run:
+  sudo apt-get update
+  sudo apt-get install mysql-server
+  sudo mysql_secure_installation
+
+================================================================================
+PART 2: Create Database
+================================================================================
+
+1. Open MySQL Command Line:
+
+   WINDOWS/MAC/LINUX:
+   Open Terminal/Command Prompt and run:
+   mysql -u root -p
+   
+   Enter your MySQL password when prompted
+
+2. Create the database:
+   
+   CREATE DATABASE quickhire;
+   
+3. Verify it was created:
+   
+   SHOW DATABASES;
+   
+4. Exit MySQL:
+   
+   EXIT;
+
+================================================================================
+PART 3: Configure Laravel Backend
+================================================================================
+
+1. Open QuickHireAPI folder
+
+2. Copy .env.example to .env:
+   
+   WINDOWS (Command Prompt):
+   copy .env.example .env
+   
+   MAC/LINUX (Terminal):
+   cp .env.example .env
+
+3. Edit .env file and update database credentials:
+
+   Find these lines:
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=quickhire
+   DB_USERNAME=root
+   DB_PASSWORD=
+   
+   Update DB_PASSWORD with your MySQL password (if you set one)
+   
+   Example:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=quickhire
+   DB_USERNAME=root
+   DB_PASSWORD=your_mysql_password
+
+4. Generate Laravel Key:
+   
+   php artisan key:generate
+
+5. Run Migrations (Creates tables in MySQL):
+   
+   php artisan migrate
+   
+   This will create:
+   - jobs table
+   - applications table
+
+6. Seed Sample Data (Optional):
+   
+   php artisan db:seed
+   
+   This inserts 6 sample jobs into the database
+
+7. Start Laravel Server:
+   
+   php artisan serve
+   
+   API will run at: http://localhost:8000/api
+
+================================================================================
+PART 4: Verify Data in MySQL
+================================================================================
+
+1. Open MySQL Terminal:
+   
+   mysql -u root -p
+   (Enter your password)
+
+2. Select the database:
+   
+   USE quickhire;
+
+3. View tables:
+   
+   SHOW TABLES;
+
+4. View jobs:
+   
+   SELECT * FROM jobs;
+
+5. View applications:
+   
+   SELECT * FROM applications;
+
+6. Exit:
+   
+   EXIT;
+
+================================================================================
+PART 5: How Data Flows
+================================================================================
+
+ADDING A JOB:
+1. Admin clicks "Add Job" in Admin Dashboard
+2. Fills form with job details
+3. Form submits to: POST /api/jobs
+4. Laravel validates the data
+5. Laravel stores in MySQL 'jobs' table
+6. Frontend receives response and updates UI
+
+VIEWING JOBS:
+1. User visits Jobs page
+2. React frontend calls: GET /api/jobs
+3. Laravel retrieves from MySQL 'jobs' table
+4. Returns JSON data to frontend
+5. Frontend displays jobs
+
+APPLYING FOR JOB:
+1. User fills application form
+2. Form submits to: POST /api/applications
+3. Laravel validates and stores in MySQL 'applications' table
+4. Application linked to job via foreign key
+5. Success message shown to user
+
+================================================================================
+PART 6: API Endpoints (Use These URLs)
+================================================================================
+
+BASE URL: http://localhost:8000/api
+
+JOBS:
+  GET    /api/jobs              → Get all jobs
+  GET    /api/jobs/{id}         → Get single job
+  POST   /api/jobs              → Create job (Admin)
+  DELETE /api/jobs/{id}         → Delete job (Admin)
+
+APPLICATIONS:
+  POST   /api/applications      → Submit application
+
+EXAMPLE: Get all jobs using curl
+  curl http://localhost:8000/api/jobs
+
+EXAMPLE: Create a job using curl
+  curl -X POST http://localhost:8000/api/jobs \
+    -H "Content-Type: application/json" \
+    -d '{
+      "title": "Test Job",
+      "company": "Test Company",
+      "location": "Test Location",
+      "category": "Technology",
+      "salary": "$100,000",
+      "description": "Test description",
+      "requirements": ["Requirement 1"]
+    }'
+
+================================================================================
+PART 7: React Frontend Configuration
+================================================================================
+
+Your React frontend is already configured to use the Laravel API!
+
+The JobContext.jsx file has been updated to:
+1. Fetch jobs from: http://localhost:8000/api/jobs
+2. Submit applications to: http://localhost:8000/api/applications
+3. Create jobs via: http://localhost:8000/api/jobs
+4. Delete jobs via: http://localhost:8000/api/jobs/{id}
+
+If you want to change the API URL, edit:
+QuickHire/src/context/JobContext.jsx
+
+Find this line:
+const API_URL = 'http://localhost:8000/api';
+
+Change it to your API server URL if needed.
+
+================================================================================
+PART 8: Run Everything Together
+================================================================================
+
+TERMINAL 1 - Start Laravel API:
+  cd QuickHireAPI
+  php artisan serve
+  → Runs at http://localhost:8000
+
+TERMINAL 2 - Start React Frontend:
+  cd QuickHire
+  npm run dev
+  → Runs at http://localhost:5173
+
+Now:
+1. Open http://localhost:5173 in browser
+2. Click "Show all jobs" to see jobs from MySQL
+3. Click on a job to apply
+4. Admin can add/delete jobs
+
+All data is stored in MySQL!
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+ERROR: "Access denied for user 'root'"
+SOLUTION: Check your MySQL password in .env file
+
+ERROR: "SQLSTATE[HY000]: General error: 1030 Got error..."
+SOLUTION: Run migrations again:
+  php artisan migrate:fresh
+  php artisan db:seed
+
+ERROR: "Can't connect to MySQL server"
+SOLUTION: Make sure MySQL service is running:
+  Windows: Check Services
+  Mac: brew services start mysql
+  Linux: sudo systemctl start mysql
+
+ERROR: "No jobs showing" in frontend
+SOLUTION: 
+1. Make sure Laravel server is running (php artisan serve)
+2. Check browser console for errors (F12)
+3. Verify API URL in JobContext.jsx is correct
+
+ERROR: "CORS error"
+SOLUTION: Update config/cors.php with your frontend URL:
+  'allowed_origins' => ['http://localhost:5173'],
+
+================================================================================
+SUCCESS CHECKLIST
+================================================================================
+
+✓ MySQL installed and running
+✓ Database 'quickhire' created
+✓ .env file configured with DB credentials
+✓ Laravel migrations ran successfully
+✓ Sample data seeded (optional)
+✓ Laravel server running at http://localhost:8000
+✓ React server running at http://localhost:5173
+✓ Jobs visible on Jobs page
+✓ Can view individual job details
+✓ Can submit application
+✓ Can see data in MySQL tables
+
+If all checkmarks are done, your system is ready!
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Customize job data in the database
+2. Add authentication for admin features
+3. Set up email notifications for applications
+4. Deploy to production server
+5. Set up daily backups
+
+For questions, refer to:
+- Laravel Documentation: https://laravel.com/docs
+- MySQL Documentation: https://dev.mysql.com/doc
+- React Documentation: https://react.dev
+
+================================================================================
