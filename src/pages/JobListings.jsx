@@ -5,7 +5,7 @@ import { FiSearch, FiMapPin, FiDollarSign, FiCalendar, FiArrowLeft } from 'react
 
 function JobListings() {
   const navigate = useNavigate();
-  const { jobs } = useJobs();
+  const { jobs, loading, error } = useJobs();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -100,12 +100,37 @@ function JobListings() {
           </div>
 
           {/* Results Count */}
-          <div className="mt-6 text-sm text-gray-600">
+          {!loading && <div className="mt-6 text-sm text-gray-600">
             Found <span className="font-semibold text-gray-900">{filteredJobs.length}</span> job{filteredJobs.length !== 1 ? 's' : ''}
-          </div>
+          </div>}
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="bg-white rounded-lg shadow-md p-12 text-center">
+            <div className="inline-block">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+              <p className="text-gray-600 text-lg">Loading jobs...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="bg-white rounded-lg shadow-md p-12 text-center">
+            <p className="text-red-600 text-lg font-medium mb-2">Error loading jobs</p>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
         {/* Job Cards */}
+        {!loading && !error && (
         <div className="space-y-4">
           {filteredJobs.length > 0 ? (
             filteredJobs.map(job => (
@@ -131,7 +156,7 @@ function JobListings() {
                       </div>
                       <div className="flex items-center gap-1">
                         <FiCalendar size={16} className="text-gray-400" />
-                        {new Date(job.postedDate).toLocaleDateString()}
+                        {new Date(job.created_at || job.postedDate).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
@@ -160,6 +185,7 @@ function JobListings() {
             </div>
           )}
         </div>
+        )}
       </div>
     </div>
   );
